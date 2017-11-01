@@ -1,5 +1,6 @@
 package me.novice;
 
+import ch.qos.logback.ext.spring.web.LogbackConfigListener;
 import me.novice.config.RootConfig;
 import me.novice.config.WebConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -14,6 +15,7 @@ public class NoviceWebAppInitializer extends AbstractAnnotationConfigDispatcherS
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
     servletContext.addListener(IntrospectorCleanupListener.class);
+    servletContext.addListener(LogbackConfigListener.class);
     super.onStartup(servletContext);
   }
 

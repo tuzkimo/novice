@@ -11,8 +11,12 @@
 
   <properties>
     <java.version>1.8</java.version>
+
     <servlet.version>3.1.0</servlet.version>
     <spring.version>4.3.11.RELEASE</spring.version>
+    <logback.version>1.2.3</logback.version>
+    <logback.ext.spring.version>0.1.4</logback.ext.spring.version>
+
     <compiler.version>3.7.0</compiler.version>
     <jetty.version>9.2.11.v20150529</jetty.version>
     <jetty.port>8000</jetty.port>
@@ -29,6 +33,18 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.logback-extensions</groupId>
+      <artifactId>logback-ext-spring</artifactId>
+      <version>${logback.ext.spring.version}</version>
     </dependency>
   </dependencies>
 
