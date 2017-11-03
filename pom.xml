@@ -10,10 +10,15 @@
   <packaging>war</packaging>
 
   <properties>
+    <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+    <maven.compiler.encoding>utf-8</maven.compiler.encoding>
+
     <java.version>1.8</java.version>
 
     <servlet.version>3.1.0</servlet.version>
     <spring.version>4.3.11.RELEASE</spring.version>
+    <jackson.version>2.9.2</jackson.version>
     <logback.version>1.2.3</logback.version>
     <logback.ext.spring.version>0.1.4</logback.ext.spring.version>
 
@@ -45,6 +50,12 @@
       <groupId>org.logback-extensions</groupId>
       <artifactId>logback-ext-spring</artifactId>
       <version>${logback.ext.spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
     </dependency>
   </dependencies>
 
