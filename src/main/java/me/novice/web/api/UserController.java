@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -35,16 +36,20 @@ public class UserController {
   }
 
   @RequestMapping(value = "/user", produces = "application/json")
+  @Transactional
   public List<UserEntity> getAll() {
     LOGGER.info("Fetching all users");
     return repository.getAll();
   }
 
   @RequestMapping(value = "/user/{id}", produces = "application/json")
+  @Transactional
   public UserEntity getOne(@PathVariable String id) {
     LOGGER.info("Fetching user with id {}", id);
-    UserEntity user = repository.getOne(id);
-    if (user == null) {
+    UserEntity user = null;
+    try {
+      user = repository.getOne(id);
+    } catch (Exception e) {
       LOGGER.warn("User with id {} not found", id);
       throw new UserNotFoundException(id);
     }
@@ -52,6 +57,7 @@ public class UserController {
   }
 
   @RequestMapping(value = "/user", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+  @Transactional
   public ResponseEntity<List<UserEntity>> add(@RequestBody UserEntity user, UriComponentsBuilder uriComponentsBuilder) {
     LOGGER.info("Creating new user with id {}", user.getId());
     List<UserEntity> users = repository.add(user);
